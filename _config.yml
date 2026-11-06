@@ -1,0 +1,4 @@
+title: orsay-openapi
+description: The 2012 Samsung Smart Hub backend, documented
+plugins:
+  - jekyll-redirect-from
