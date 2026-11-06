@@ -1,0 +1,19 @@
+# Orsay openapi endpoint census — captured 2026-10-22/23 (device: UE40EH5300, region DE)
+# columns: endpoint<TAB>query params<TAB>auth headers<TAB>extra request headers<TAB>serving HostName<TAB>purpose<TAB>captures<TAB>evidence label
+# auth: A=AppKey, T=Token, -=none. Evidence labels refer to the author's (unpublished) capture set.
+/openapi/device/model/bind	timestamp=bootms	-	duid macaddr localset lineup chipset displaytype producttype cis_smarthub_block	appsdevice-vg.samsungqbe.com	map hardware lineup to model id (12_X10PLUS_2D)	18	conn110
+/openapi/device/lookup	timestamp=bootms	-	duid CountryCode ModelId Firmcode Client	appsdevice-vg.samsungqbe.com	smarthub version + apiDomain/noticeDomain	17	conn111
+/openapi/device/auth/seedkey	timestamp=bootms	A	macaddr ModelId CountryCode Firmcode duid	appsdevice-vg.samsungqbe.com	session+user+seedkey (Token material)	17	conn112
+/openapi/conf/date	timestamp=bootms	AT	-	appsconf.samsungqbe.com	server time	17	conn113
+/openapi/conf/log	service=widget timestamp=epochms	AT	-	appsconf.samsungqbe.com	log sink config (log.internetat.tv, queue params)	17	conn114
+/openapi/service/widget/list	lang=de timestamp=epochms	AT	-	appsappsyncors-vg.samsungqbe.com	full catalog of model's widgets (18 ids seen)	34	conn115
+/openapi/service/widget/signed/<id>	timestamp=epochms	AT	-	appsappsyncors-vg.samsungqbe.com	per-widget download metadata (CDN zip url, sizes, encryption)	43	conn10 conn100-108
+/openapi/service/widget/gallery	featured=signature|partners lang=de timestamp=epochms; category=CP_YourVideo|Manager lang=de	AT	-	appsappsyncors-vg.samsungqbe.com	store listing (Manager = develop mode, goes to dev server)	57	conn120 conn128
+/openapi/update/notice	timestamp=epochms	-	duid ModelId CountryCode	appschannel-vg.samsungqbe.com	notice/disclaimer versions; polled repeatedly	28	conn122
+/openapi/service/channel/gallery	category=BrowserConfig timestamp=epochms	AT	-	appschannel-vg.samsungqbe.com	RSS channel listing (secapi ns; DE: chid 4650/5347/5781)	26	conn10
+/openapi/service/channel/5347	timestamp=epochms	AT	-	appschannel-vg.samsungqbe.com	2012 browser config data -> apps-pub CDN xml	26	conn12
+/openapi/service/disclaimer/770	timestamp=epochms	-	duid ModelId CountryCode	tnc-r53-prd.samsungqbe.com	66 KB German 2012 terms HTML	4	conn23
+# SSO host (sso.internetat.tv):
+/openapi/user/auth/seedkey	(none)	AT (infolink Token)	ModelId=lineup UE5300 WidgetModelID CountryCode duid	(os-internetattv)	SSO session+seedkey, no <user>, +09:00 expiry	2	sso/conn1
+# Error shape (backend, on non-numeric widget id): HTTP 400, <rsp stat="fail"><err code="107" msg="Invalid Service Request"/><desc>Invalid widgetid.</desc></rsp> — conn35 conn71
+# Never captured: fkp.samsungcloudsolution.com binary protocol (client rejects mirrored chain, alert 0228); log.internetat.tv POST format (config only, conn114)

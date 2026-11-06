@@ -1,0 +1,4 @@
+# no build artifacts; captures and blobs are deliberately not kept here
+*.bin
+*.pcap
+*.zip
